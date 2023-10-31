@@ -20,6 +20,7 @@ public class Requesting_an_account_status
     public async Task Should_return_if_found_successfully()
     {
         await using var provider = new ServiceCollection()
+            .AddTelemetryListener(_output)
             .AddMassTransitTestHarness(_output, x => x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>())
             .BuildServiceProvider(true);
 
@@ -39,6 +40,7 @@ public class Requesting_an_account_status
     public async Task Should_return_not_available_if_not_found()
     {
         await using var provider = new ServiceCollection()
+            .AddTelemetryListener(_output)
             .AddMassTransitTestHarness(_output, x => x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>())
             .BuildServiceProvider(true);
 
@@ -59,6 +61,7 @@ public class Requesting_an_account_status
     public async Task Should_throw_exception_if_not_found()
     {
         await using var provider = new ServiceCollection()
+            .AddTelemetryListener(_output)
             .AddMassTransitTestHarness(_output, x => x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>())
             .BuildServiceProvider(true);
 

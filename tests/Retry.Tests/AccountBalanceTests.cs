@@ -20,7 +20,11 @@ public class Requesting_an_account_balance
     public async Task Should_return_if_found_successfully()
     {
         await using var provider = new ServiceCollection()
-            .AddMassTransitTestHarness(_output, x => x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>())
+            .AddTelemetryListener(_output)
+            .AddMassTransitTestHarness(_output, x =>
+            {
+                x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>();
+            })
             .BuildServiceProvider(true);
 
         var harness = await provider.StartTestHarness();
@@ -39,7 +43,11 @@ public class Requesting_an_account_balance
     public async Task Should_eventually_succeed()
     {
         await using var provider = new ServiceCollection()
-            .AddMassTransitTestHarness(_output, x => x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>())
+            .AddTelemetryListener(_output)
+            .AddMassTransitTestHarness(_output, x =>
+            {
+                x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>();
+            })
             .BuildServiceProvider(true);
 
         var harness = await provider.StartTestHarness();
@@ -60,6 +68,7 @@ public class Requesting_an_account_balance
     public async Task Should_not_retry_business_rule_exceptions()
     {
         await using var provider = new ServiceCollection()
+            .AddTelemetryListener(_output)
             .AddMassTransitTestHarness(_output, x => x.AddConsumer<AccountInformationConsumer, AccountInformationConsumerDefinition>())
             .BuildServiceProvider(true);
 

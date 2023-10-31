@@ -50,7 +50,7 @@ public class ShipmentStatusStateMachine :
                 .Schedule(ShipmentStatusExpired, context => new ShipmentStatusExpired()
                 {
                     CorrelationId = context.Saga.CorrelationId
-                }, context => context.Message.LastUpdated?.UtcDateTime ?? DateTime.UtcNow + TimeSpan.FromSeconds(20))
+                }, _ => TimeSpan.FromSeconds(20))
                 .TransitionTo(StatusAvailable),
             
             When(QueryRequest.TimeoutExpired)
