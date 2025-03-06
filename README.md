@@ -1,21 +1,11 @@
 # DEMO PowerUps
 
-
 ## Requirements
 
 This sample using .NET 8, MassTransit 8, and RabbitMQ, Docker.
 
-The easiest way to get up and running is by using Docker Compose and running `docker-compose up` in the "src" directory.   
-Your RabbitMQ server is listening on localhost:1883 and has credentials of `rabbitmq` for the username and password. This will give you a fully isolated instance for testing.
-If you already have a RabbitMQ instance on port 1883, either stop it or change the port binding in the docker-compose file.
-
-If you already have RabbitMQ running locally, you will need to add the MQTT plugin `rabbitmq-plugins enable rabbitmq_mqtt`.
+The easiest way to get up and running is by using Docker Compose and running `docker-compose up` in your root directory.
 
 ## Connecting to RabbitMQ
 
-The management portal can be found at http://localhost:15672
-
-## Connecting IOT device to RabbitMQ
-
-Ensure you have opened the port 1883 for all inbound TCP traffic on your computer.   
-Connect your device to your local network and set the URL to `TCP://{machine IP}:1883` and username and password is `rabbitmq`
+The management portal can be found at <http://localhost:15672>. The management portal credentials are `guest` for the username and password.
